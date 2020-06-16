@@ -61,8 +61,8 @@ class NestedTest < MiniTest::Test
 
   def test_list_of_employees_across_all_restaurants
     #=======================
-    employee_names = stores.values.flat_map do |store|
-      store[:employees]
+    employee_names = stores.flat_map do |k, store_info|
+      store_info[:employees]
     end
     #=======================
     assert_equal ["Jeff","Zach","Samantha","Bob","Sue","James","Alvin","Simon","Theodore"], employee_names
@@ -70,8 +70,8 @@ class NestedTest < MiniTest::Test
 
   def test_list_of_all_ingredients_across_all_restaurants
     #=======================
-    ingredients = stores.values.flat_map do |store|
-      store[:dishes].flat_map do |dish|
+    ingredients = stores.flat_map do |k, store_info|
+      store_info[:dishes].flat_map do |dish|
         dish[:ingredients]
       end
     end
